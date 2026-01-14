@@ -1,0 +1,22 @@
+# --- Appearance ---
+theme = "Atom"
+font-family = "JetBrainsMono Nerd Font"
+font-size = 14
+cursor-style = block
+term = xterm-ghostty
+
+# --- Window ---
+window-padding-x = 10
+window-padding-y = 10
+macos-titlebar-style = hidden
+window-colorspace = display-p3
+
+# --- Performance ---
+macos-option-as-alt = true
+shell-integration = zsh
+
+
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = clipboard
+keybind = shift+enter=text:\x1b\r
