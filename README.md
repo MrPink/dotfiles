@@ -11,20 +11,13 @@ My macOS configuration files.
 - `.config/btop/btop.conf` - btop system monitor config
 - `.config/zed/settings.json` - Zed editor settings
 
-## Dependencies
-
-Install via Homebrew:
-
-```bash
-brew install zsh-autosuggestions zsh-syntax-highlighting zoxide starship fzf eza bat btop tldr
-```
-
 ## Installation
 
 ```bash
 git clone https://github.com/MrPink/dotfiles.git ~/git/dotfiles
 cd ~/git/dotfiles
-./install.sh
+./bootstrap.sh  # Install Homebrew packages
+./install.sh    # Symlink dotfiles
 ```
 
-The install script backs up existing files before creating symlinks.
+The bootstrap script installs all dependencies via Homebrew. The install script backs up existing files before creating symlinks.
