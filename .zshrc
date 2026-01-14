@@ -34,3 +34,7 @@ source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
 
 # Automatically use the latest installed Ruby
 chruby ruby
+
+# UV Python manager
+eval "$(uv generate-shell-completion zsh)"
+export PATH="$HOME/.local/bin:$PATH"

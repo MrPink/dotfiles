@@ -18,6 +18,9 @@ brew install zoxide starship fzf eza bat btop tldr
 # Ruby version manager
 brew install chruby ruby-install
 
+# Python (uv)
+brew install uv
+
 # Kubernetes tools
 brew install kubectl kubie
 
