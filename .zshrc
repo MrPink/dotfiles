@@ -91,6 +91,20 @@ function hubble-cluster {
 
 # Utility Functions
 alias tg="terragrunt"
+alias tf="terraform"
+alias kc="kubectx"
+alias kn="kubens"
+alias v="vault"
+
+# K9s with default namespace
+alias k9="k9s"
+
+# Stern shortcuts
+alias logs="stern"
+
+# Docker/Container aliases
+alias di="dive"
+alias scan="grype"
 
 function histsearch() { fc -lim "*$@*" 1 }
 
@@ -100,6 +114,55 @@ function remove_tg_cache {
 
 function remove_tg_locks {
   find . -type f -name ".terraform.lock.hcl" -exec rm -f {} +
+}
+
+# Docker helper - remove all stopped containers
+function docker-clean {
+  docker container prune -f
+  docker image prune -f
+  docker volume prune -f
+}
+
+# Quick pod exec
+function kexec {
+  if [ -z "$1" ]; then
+    echo "Usage: kexec <pod-name> [command]"
+    return 1
+  fi
+  local cmd="${2:-sh}"
+  kubectl exec -it "$1" -- "$cmd"
+}
+
+# Get pod logs with follow
+function klogs {
+  if [ -z "$1" ]; then
+    echo "Usage: klogs <pod-name>"
+    return 1
+  fi
+  kubectl logs -f "$1"
+}
+
+# Port forward shortcut
+function kpf {
+  if [ -z "$2" ]; then
+    echo "Usage: kpf <pod-name> <port>"
+    return 1
+  fi
+  kubectl port-forward "$1" "$2:$2"
+}
+
+# Get all resources in namespace
+function kgetall {
+  kubectl get all,cm,secret,ing,pvc
+}
+
+# Decode Kubernetes secret
+function kdecode-secret {
+  if [ -z "$1" ]; then
+    echo "Usage: kdecode-secret <secret-name>"
+    return 1
+  fi
+  kubectl get secret "$1" -o json | jq -r '.data | map_values(@base64d)'
 }
 
 # Terraform Auto-Switch
