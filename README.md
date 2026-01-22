@@ -8,6 +8,7 @@ My macOS configuration files.
 - `.zprofile` - Zsh profile for environment setup
 - `.vimrc` - Vim configuration
 - `.gitconfig` - Git aliases and settings
+- `.tmux.conf` - tmux configuration with vim-style keybindings
 - `.config/starship.toml` - Starship prompt theme
 - `.config/git/ignore` - Global gitignore
 - `.config/ghostty/config` - Ghostty terminal config
@@ -124,3 +125,22 @@ The bootstrap script installs all dependencies via Homebrew. The install script 
 ### Utilities
 - `pem2json` - Convert PEM to JSON format
 - `histsearch <query>` - Search command history
+
+## tmux Keybindings
+
+### Prefix Key
+- Changed from `Ctrl-b` to `Ctrl-a` (easier to reach)
+
+### Window & Pane Management
+- `Ctrl-a |` - Split pane vertically
+- `Ctrl-a -` - Split pane horizontally
+- `Ctrl-a h/j/k/l` - Navigate panes (vim-style)
+- `Ctrl-a H/J/K/L` - Resize panes (vim-style)
+- `Ctrl-a r` - Reload tmux config
+
+### Features
+- Mouse support enabled
+- Vim-style copy mode
+- 256 color support
+- 10,000 line history buffer
+- Window renumbering on close

@@ -4,7 +4,7 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKUP_DIR="$HOME/.dotfiles_backup/$(date +%Y%m%d_%H%M%S)"
 
 # Files to symlink
-FILES=".zshrc .zprofile .vimrc .gitconfig"
+FILES=".zshrc .zprofile .vimrc .gitconfig .tmux.conf"
 CONFIG_DIRS="ghostty btop zed git"
 CONFIG_FILES="starship.toml"
 

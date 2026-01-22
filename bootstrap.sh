@@ -13,7 +13,7 @@ echo "Installing packages..."
 brew install zsh-autosuggestions zsh-syntax-highlighting
 
 # Modern CLI tools
-brew install zoxide starship fzf eza bat btop tldr jq yq
+brew install zoxide starship fzf eza bat btop tldr jq yq tmux
 
 # Ruby version manager
 brew install chruby ruby-install
