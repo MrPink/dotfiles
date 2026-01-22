@@ -61,11 +61,6 @@ export do="--dry-run=client -o yaml"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # --- 12. Work-Specific Functions ---
-# AWS Functions
-function ecr_login {
-  $(aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 491384846940.dkr.ecr.eu-west-1.amazonaws.com)
-}
-
 # Kubernetes Functions
 function set_ns {
   kubectl config set-context --current --namespace=$1

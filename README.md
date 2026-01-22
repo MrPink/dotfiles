@@ -111,9 +111,6 @@ The bootstrap script installs all dependencies via Homebrew. The install script 
 - `get-pods-on-node <node>` - List all pods on a node
 - `hubble-cluster <command>` - Run command on all Hubble pods
 
-### AWS
-- `ecr_login` - Login to ECR
-
 ### Terraform
 - `remove_tg_cache` - Clean Terragrunt cache
 - `remove_tg_locks` - Remove Terraform lock files
