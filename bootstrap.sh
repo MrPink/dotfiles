@@ -18,6 +18,10 @@ brew install zoxide starship fzf eza bat btop tldr
 # Ruby version manager
 brew install chruby ruby-install
 
+# Install latest Ruby
+echo "Installing latest Ruby..."
+ruby-install ruby
+
 # Python (uv)
 brew install uv
 

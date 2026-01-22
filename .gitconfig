@@ -1,11 +1,12 @@
 [user]
-	name = MrPink
-	email = MrPink@users.noreply.github.com
+	name = Will Pink
+	email = will.pink@gmail.com
 
 [core]
 	excludesfile = ~/.config/git/ignore
 	editor = vim
 	pager = less -F -X
+	symlinks = false
 
 [init]
 	defaultBranch = main
@@ -22,6 +23,9 @@
 [diff]
 	colorMoved = default
 
+[branch]
+	sort = -committerdate
+
 [alias]
 	co = checkout
 	br = branch
@@ -30,6 +34,7 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	lg = log --oneline --graph --decorate -20
+	lc = log-compact
 	amend = commit --amend --no-edit
 	wip = !git add -A && git commit -m 'WIP'
 	undo = reset --soft HEAD~1
@@ -38,3 +43,9 @@
 	stashes = stash list
 	discard = checkout --
 	contrib = shortlog -sn
+	grep-branch = "!f(){ git branch -a | sed -e 's/[ \\*]*//' | grep -v -e '\\->' | xargs git grep $@; };f "
+	grep-branch-remote = "!f(){ git branch -a | sed -e 's/[ \\*]*//' | grep -v -e '\\->' | grep '^remotes' | xargs git grep $@; };f"
+	grep-branch-local = "!f(){ git branch -a | sed -e 's/[ \\*]*//' | grep -v -e '\\->' -e '^remotes' | xargs git grep $@;  };f "
+
+[log-compact]
+	defaults = --two-initials --abbrev=8
