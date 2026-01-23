@@ -7,6 +7,8 @@ BACKUP_DIR="$HOME/.dotfiles_backup/$(date +%Y%m%d_%H%M%S)"
 FILES=".zshrc .zprofile .vimrc .gitconfig .tmux.conf"
 CONFIG_DIRS="ghostty btop zed git"
 CONFIG_FILES="starship.toml"
+CLAUDE_DIRS="commands skills"
+CLAUDE_FILES="settings.local.json"
 
 echo "Installing dotfiles from $DOTFILES_DIR"
 
@@ -51,6 +53,33 @@ for file in $CONFIG_FILES; do
     fi
     echo "Linking .config/$file"
     ln -s "$DOTFILES_DIR/.config/$file" "$HOME/.config/$file"
+done
+
+# Symlink .claude directories
+mkdir -p "$HOME/.claude"
+for dir in $CLAUDE_DIRS; do
+    if [ -e "$HOME/.claude/$dir" ] && [ ! -L "$HOME/.claude/$dir" ]; then
+        echo "Backing up $HOME/.claude/$dir to $BACKUP_DIR/"
+        mv "$HOME/.claude/$dir" "$BACKUP_DIR/"
+    fi
+    if [ -L "$HOME/.claude/$dir" ]; then
+        rm "$HOME/.claude/$dir"
+    fi
+    echo "Linking .claude/$dir"
+    ln -s "$DOTFILES_DIR/.claude/$dir" "$HOME/.claude/$dir"
+done
+
+# Symlink .claude files
+for file in $CLAUDE_FILES; do
+    if [ -e "$HOME/.claude/$file" ] && [ ! -L "$HOME/.claude/$file" ]; then
+        echo "Backing up $HOME/.claude/$file to $BACKUP_DIR/"
+        mv "$HOME/.claude/$file" "$BACKUP_DIR/"
+    fi
+    if [ -L "$HOME/.claude/$file" ]; then
+        rm "$HOME/.claude/$file"
+    fi
+    echo "Linking .claude/$file"
+    ln -s "$DOTFILES_DIR/.claude/$file" "$HOME/.claude/$file"
 done
 
 # Create vim undo directory

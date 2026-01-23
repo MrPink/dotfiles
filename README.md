@@ -14,6 +14,7 @@ My macOS configuration files.
 - `.config/ghostty/config` - Ghostty terminal config
 - `.config/btop/btop.conf` - btop system monitor config
 - `.config/zed/settings.json` - Zed editor settings
+- `.claude/` - Claude Code commands, skills, and settings
 
 ## Installation
 
@@ -141,3 +142,30 @@ The bootstrap script installs all dependencies via Homebrew. The install script 
 - 256 color support
 - 10,000 line history buffer
 - Window renumbering on close
+
+## Claude Code
+
+### Custom Commands
+
+| Command | Description |
+|---------|-------------|
+| `/jira-ticket` | Create a JIRA ticket from branch changes |
+| `/setup-branch` | Create JIRA ticket, branch, and draft PR |
+| `/tf-plan` | Run terraform plan and show output |
+
+### Custom Skills
+
+**github-actions-status** - Fetch and display GitHub Actions workflow run status using the GitHub CLI.
+
+Example usage:
+- "Check the status of the latest 'ci.yml' workflow run"
+- "What's the status for run ID 12345678?"
+
+### Permissions
+
+The `.claude/settings.local.json` file defines auto-approved operations:
+- `test` commands
+- `cat` commands
+- `brew list` commands
+
+See `.claude/README.md` for detailed documentation.

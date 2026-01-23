@@ -1,19 +1,24 @@
-# --- 1. Environment Variables ---
+# --- 1. Completion System Initialization ---
+# Must be loaded before any compdef or add-zsh-hook calls
+autoload -Uz compinit
+compinit
+
+# --- 2. Environment Variables ---
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH"
 export EDITOR='vim'
 
-# --- 2. Plugin Initialization (Must be installed via Brew) ---
+# --- 3. Plugin Initialization (Must be installed via Brew) ---
 # Note: Install these first: brew install zsh-autosuggestions zsh-syntax-highlighting
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# --- 3. Tool Initializations ---
+# --- 4. Tool Initializations ---
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 eval "$(fzf --zsh)"
 
-# --- 4. Modern Aliases ---
+# --- 5. Modern Aliases ---
 alias ll="eza -lh --icons --grid --git"
 alias cat="bat"
 alias cd="z"
@@ -23,13 +28,13 @@ alias k="kubectl"
 alias gs="git status"
 alias get_hash="git rev-parse HEAD | pbcopy"
 
-# --- 5. History Settings ---
+# --- 6. History Settings ---
 HISTSIZE=5000
 HISTFILE=~/.zsh_history
 SAVEHIST=5000
 setopt SHARE_HISTORY
 
-# --- 6. Ruby Manager ---
+# --- 7. Ruby Manager ---
 # Load chruby
 source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
 source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
@@ -37,15 +42,15 @@ source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
 # Automatically use the latest installed Ruby
 chruby ruby
 
-# --- 7. Python Manager ---
+# --- 8. Python Manager ---
 # UV Python manager
 eval "$(uv generate-shell-completion zsh)"
 
-# --- 8. AWS Configuration ---
+# --- 9. AWS Configuration ---
 export AWS_SDK_LOAD_CONFIG=true
 export AWS_DEFAULT_REGION=eu-west-1
 
-# --- 9. PATH Configuration ---
+# --- 10. PATH Configuration ---
 export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix golang)/libexec"
 export PATH=$PATH:${GOPATH}/bin:${GOROOT}/bin
@@ -54,13 +59,13 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
-# --- 10. Kubernetes Helpers ---
+# --- 11. Kubernetes Helpers ---
 export do="--dry-run=client -o yaml"
 
-# --- 11. Man Page Styling ---
+# --- 12. Man Page Styling ---
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
-# --- 12. Work-Specific Functions ---
+# --- 13. Work-Specific Functions ---
 # Kubernetes Functions
 function set_ns {
   kubectl config set-context --current --namespace=$1
@@ -170,6 +175,5 @@ load-tfswitch() {
 add-zsh-hook chpwd load-tfswitch
 load-tfswitch
 
-# --- 13. Kubectl Completion ---
-autoload -U colors; colors
+# --- 14. Kubectl Completion ---
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
